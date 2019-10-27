@@ -32,6 +32,7 @@ function parseInput(input) {
             break;
         
         case "concert":
+            query = query.replace("-", "");
             bandsInTown(query);
             break;
     
