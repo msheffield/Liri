@@ -1,6 +1,7 @@
 require("dotenv").config();
 var omdb = require("./omdb.js");
-console.log(omdb);
+var bandsInTown = require("./bandsInTown.js");
+var spotify = require("./spotify.js");
 
 var keys = require("./keys.js");
 
@@ -27,7 +28,12 @@ function parseInput(input) {
             break;
 
         case "spotify":
-            searchSpotify(query)
+            spotify(keys, query);
+            break;
+        
+        case "concert":
+            bandsInTown(query);
+            break;
     
         default:
             console.log("Please use concert, spotify or movie as first input");

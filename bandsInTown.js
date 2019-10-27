@@ -1,4 +1,4 @@
-function getOMDB(request) {
+module.exports = function (request) {
     var axios = require('axios');
 
     axios.get("https://rest.bandsintown.com/artists/" + request + "/events?app_id=codingbootcamp").then(

@@ -1,11 +1,9 @@
-function searchSpofity(keys, search) {
-
+module.exports = function (keys, request) {
     var Spotify = require("node-spotify-api");
 
     var spotify = new Spotify(keys.spotify);
 
-
-    spotify.search({ type: 'track', query: search }, function (err, data) {
+    spotify.search({ type: 'track', query: request }, function (err, data) {
         if (err) {
             return console.log('Error occurred: ' + err);
         }
