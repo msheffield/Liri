@@ -21,21 +21,30 @@ function parseInput(input) {
             query += (input_array[i])
         }
     }
-        
+
     switch (input_array[0]) {
         case "movie":
+            if (query == "") {
+                query = "Mr-Nobody";
+            }
             omdb(query);
             break;
 
         case "spotify":
+            if (query == "") {
+                query = "Silence";
+            }
             spotify(keys, query);
             break;
-        
+
         case "concert":
+            if (query == "") {
+                query = "Fish";
+            }
             query = query.replace("-", "+");
             bandsInTown(query);
             break;
-    
+
         default:
             console.log("Please use concert, spotify or movie as first input");
             break;
