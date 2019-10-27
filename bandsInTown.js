@@ -1,9 +1,17 @@
 module.exports = function (request) {
     var axios = require('axios');
+    var moment = require('moment');
 
     axios.get("https://rest.bandsintown.com/artists/" + request + "/events?app_id=codingbootcamp").then(
         function (response) {
-            console.log(response.data);
+
+            response.data.forEach(item => {
+                console.log("Line Up: " + item.lineup);
+                console.log("Venue: " + item.venue.name + " in " + item.venue.city + ", " + item.venue.country);
+                let date = item.datetime.slice(0, 10);
+                console.log("On: " + parseDate(date));
+                console.log("/--------------------------");
+            })
         })
         .catch(function (errror) {
             if (error.response) {
@@ -20,4 +28,11 @@ module.exports = function (request) {
             }
             console.log(error.config);
         })
+
+    function parseDate(date) {
+        let date_array = date.split("-");
+        let formattedDate = (date_array[1] + "-" +date_array[2] + "-" + date_array[0]);
+
+        return moment(formattedDate, "MM-DD-YYYY").format('LL');
+    }
 }
