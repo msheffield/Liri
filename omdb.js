@@ -5,7 +5,22 @@ module.exports = function (request) {
 
     axios.get(queryUrl).then(
         function (response) {
-            console.log(response.data);
+            let movie = response.data;
+
+            if (response.data.Response == 'False') {
+                console.log(response.data.Error);
+            }
+            else {
+                console.log("Title: " + movie.Title);
+                console.log("Year: " + movie.Year);
+                console.log("IMDB Rating: " + movie.Ratings[0].value);
+                console.log("Rotten Tomatoes Rating: " + movie.Ratings[0].Value);
+                console.log("Produced in: " + movie.Country);
+                console.log("Language: " + movie.Language);
+                console.log("Plot: " + movie.Plot);
+                console.log("Actors: " + movie.Actors);
+                console.log("Rated: " + movie.Rated);
+            }
         })
         // Error Catching
         .catch(function (error) {
