@@ -2,10 +2,14 @@ require("dotenv").config();
 var omdb = require("./omdb.js");
 var bandsInTown = require("./bandsInTown.js");
 var spotify = require("./spotify.js");
+var readFile = require("./readFile.js");
+var log = require("./log.js");
 
 var keys = require("./keys.js");
 
 var userInput = process.argv[2];
+
+log(userInput);
 
 parseInput(userInput);
 
@@ -43,6 +47,15 @@ function parseInput(input) {
             }
             query = query.replace("-", "+");
             bandsInTown(query);
+            break;
+
+        case "do":
+            if (query = "what-it-says") {
+                readFile(omdb, bandsInTown, spotify, keys);
+            }
+            else {
+                console.log("Do what?");
+            }
             break;
 
         default:
