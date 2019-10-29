@@ -1,5 +1,6 @@
-module.exports = function (keys, request) {
+module.exports = function (request) {
     var Spotify = require("node-spotify-api");
+    var keys = require("./keys.js");
 
     var spotify = new Spotify(keys.spotify);
 

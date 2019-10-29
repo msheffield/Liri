@@ -5,13 +5,12 @@ var spotify = require("./spotify.js");
 var readFile = require("./readFile.js");
 var log = require("./log.js");
 
-var keys = require("./keys.js");
-
 var userInput = process.argv[2];
 
 log(userInput);
 
 parseInput(userInput);
+
 
 function parseInput(input) {
     let input_array = input.split('-');
@@ -38,7 +37,7 @@ function parseInput(input) {
             if (query == "") {
                 query = "Silence";
             }
-            spotify(keys, query);
+            spotify(query);
             break;
 
         case "concert":
@@ -51,7 +50,7 @@ function parseInput(input) {
 
         case "do":
             if (query = "what-it-says") {
-                readFile(omdb, bandsInTown, spotify, keys);
+                readFile(omdb, bandsInTown, spotify);
             }
             else {
                 console.log("Do what?");

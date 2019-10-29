@@ -1,5 +1,11 @@
 module.exports = function (omdb, bandsInTown, spotify, keys) {
     var fs = require("fs");
+
+    async function apiCall(whichAPIService, Request) {
+        return await whichAPIService(Request)
+    }
+
+    
     fs.readFile("random.txt", "utf8", function (error, data) {
         let lines = data.split('\n');
         console.log(lines);
@@ -19,14 +25,14 @@ module.exports = function (omdb, bandsInTown, spotify, keys) {
                     if (query == "") {
                         query = "Mr-Nobody";
                     }
-                    omdb(query);
+                    apiCall(omdb, query);
                     break;
 
                 case "spotify":
                     if (query == "") {
                         query = "Silence";
                     }
-                    spotify(keys, query);
+                    apiCall(spotify, query);
                     break;
 
                 case "concert":
@@ -34,7 +40,7 @@ module.exports = function (omdb, bandsInTown, spotify, keys) {
                         query = "Fish";
                     }
                     query = query.replace("-", "+");
-                    bandsInTown(query);
+                    apiCall(bandsInTown, query);
                     break;
             }
         })
