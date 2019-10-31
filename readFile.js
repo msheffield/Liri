@@ -1,10 +1,6 @@
 module.exports = function (omdb, bandsInTown, spotify, keys) {
     var fs = require("fs");
-
-    async function apiCall(whichAPIService, Request) {
-        return await whichAPIService(Request)
-    }
-
+    var selectCase = require("./selectCase.js");
     
     fs.readFile("random.txt", "utf8", function (error, data) {
         let lines = data.split('\n');
@@ -20,29 +16,8 @@ module.exports = function (omdb, bandsInTown, spotify, keys) {
                 query = JSON.parse(args[1]);
             }
 
-            switch (command) {
-                case "movie":
-                    if (query == "") {
-                        query = "Mr-Nobody";
-                    }
-                    apiCall(omdb, query);
-                    break;
-
-                case "spotify":
-                    if (query == "") {
-                        query = "Silence";
-                    }
-                    apiCall(spotify, query);
-                    break;
-
-                case "concert":
-                    if (query == "") {
-                        query = "Fish";
-                    }
-                    query = query.replace("-", "+");
-                    apiCall(bandsInTown, query);
-                    break;
-            }
+            selectCase(command, query);
         })
+    
     })
 }
